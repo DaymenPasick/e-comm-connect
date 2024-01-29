@@ -2,28 +2,16 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
-// The `/api/categories` endpoint
 
+//Get all Categories
 router.get('/', async (req, res) => {
   try {
     const categoryData = await Category.findAll({include:
      [
       {
        model: Product,
-
-       //will hide product id from req response
-       attributes: {
-        exclude: ['id']
-       }
-
       }
     ],
-  
-    //will hide category id from req response  
-    attributes: {
-      exclude: ['id']
-    },
-  
   });
 
     res.status(200).json(categoryData);
@@ -33,28 +21,19 @@ router.get('/', async (req, res) => {
 
 });
 
+
+//Get a Category by ID
 router.get('/:id', async (req, res) => {
   try {
     const categoryData = await Category.findByPk(req.params.id, {include:
        [
         {
          model: Product,
-
-         //will hide product id from req response
-         attributes: {
-          exclude: ['id']
-         }
-         
         }
       ],
-
-      //will categorytag id from req response
-      attributes: {
-        exclude: ['id']
-      },
-    
     });
     if (!categoryData) {
+
       res.status(404).json({ message: 'No tag with this id!',
      });
       return;
@@ -65,6 +44,9 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+
+
+//Create new Category
 router.post('/', async (req, res) => {
   try {
     const newCategory = await Category.create(req.body);
@@ -76,6 +58,9 @@ router.post('/', async (req, res) => {
   }
 });
 
+
+
+//Update a Category
 router.put('/:id', async (req, res) => {
   try {
     const categoryData = await Category.update(req.body, {
@@ -93,6 +78,9 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+
+
+//Delete a Category by ID
 router.delete('/:id', async (req, res) => {
   try {
     const categoryData = await Category.destroy({

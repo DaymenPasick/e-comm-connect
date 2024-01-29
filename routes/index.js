@@ -1,3 +1,4 @@
+//sets route for requests starting with /api
 const router = require('express').Router();
 const apiRoutes = require('./api');
 
