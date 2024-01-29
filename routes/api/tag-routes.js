@@ -13,7 +13,14 @@ router.get('/', async (req, res) => {
        attributes: {
         exclude: ['id']
        }
-    }]});
+    }],
+  
+  
+    attributes: {
+      exclude: ['id']
+    },
+  
+  });
 
     res.status(200).json(tagData);
   } catch (err) {
@@ -35,7 +42,13 @@ router.get('/:id', async (req, res) => {
           exclude: ['id']
          }
       
-      }]});
+      }],
+
+      attributes: {
+        exclude: ['id']
+      },
+    
+    });
     if (!tagData) {
       res.status(404).json({ message: 'No tag with this id!',
      });
