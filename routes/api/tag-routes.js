@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
   
   //   res.status(400).json(err)
   // }
-  // // be sure to include its associated Product data
+  // // be sure to include its associated Product dataa
 
 
   try {
