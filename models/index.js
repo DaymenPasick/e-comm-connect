@@ -1,4 +1,4 @@
-// import models
+//This file contains code to associate tables with eachother
 const Product = require('./Product');
 const Category = require('./Category');
 const Tag = require('./Tag');
