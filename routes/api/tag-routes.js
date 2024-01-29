@@ -7,14 +7,17 @@ const { Tag, Product, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const tagData = await Tag.findAll({include:
-     [{
+     [
+      {
        model: Product,
 
        //will hide tag id from req response
        attributes: {
         exclude: ['id']
        }
-      }],
+
+      }
+    ],
   
     //will hide tag id from req response  
     attributes: {
@@ -36,14 +39,17 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const tagData = await Tag.findByPk(req.params.id, {include:
-       [{
+       [
+        {
          model: Product,
 
          //will hide tag id from req response
          attributes: {
           exclude: ['id']
          }
-        }],
+         
+        }
+      ],
 
       //will hide tag id from req response
       attributes: {

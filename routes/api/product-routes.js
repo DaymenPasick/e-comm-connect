@@ -52,6 +52,7 @@ router.get('/:id', async (req, res) => {
          attributes: {
           exclude: ['id']
          }
+
         },
         {
          model: Tag,
@@ -60,6 +61,7 @@ router.get('/:id', async (req, res) => {
          attributes: {
           exclude: ['id']
          }
+
         }
       ],
 
@@ -80,16 +82,9 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// create new product
+//Create new product
 router.post('/', async (req, res) => {
-  /* req.body should look like this...
-    {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
-    }
-  */
+
   try {
     const product = await Product.create(req.body);
     // if there's product tags, we need to create pairings by using the setTags method
@@ -106,7 +101,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// update product
+//Update product by id
 router.put('/:id', async (req, res) => {
   try {
     const product = await Product.findByPk(req.params.id, { 
