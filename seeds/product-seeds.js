@@ -1,3 +1,4 @@
+//Holds test data for Tag database
 const { Product } = require('../models');
 
 const productData = [

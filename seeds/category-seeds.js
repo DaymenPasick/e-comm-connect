@@ -1,3 +1,4 @@
+//Holds test data for Tag database
 const { Category } = require('../models');
 
 const categoryData = [

@@ -1,3 +1,5 @@
+//Sets up our ability to sync all seed data in seeds directory with
+//>npm run seed> terminal command
 const seedCategories = require('./category-seeds');
 const seedProducts = require('./product-seeds');
 const seedTags = require('./tag-seeds');
