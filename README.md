@@ -21,14 +21,8 @@
  (https://www.awesomescreenshot.com/video/24467958?key=f7f4bd435c849c33f94ba9a49a438867)
 
    
-- Terminal prompts to populate your newREADME
-    ![Sample README](./assets/imgs/easySVGTerminalPrompt.png)   
-   
-   
-- Generated newREADME sample
-    ![Sample SVG Logo](./assets/imgs/logo.svg)
-    
-
+- Click here to access the app from GitHub:
+(https://github.com/DaymenPasick/e-comm-connect)
 
 
 ## License
