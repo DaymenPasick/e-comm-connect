@@ -5,15 +5,29 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 router.get('/', async (req, res) => {
   //finds all tags
-  try{
-    const tagData = await Tag.findAll()
+  // try{
+  //   const tagData = await Tag.findAll()
   
+  //   res.status(200).json(tagData);
+  // } catch (err) {
+  
+  //   res.status(400).json(err)
+  // }
+  // // be sure to include its associated Product data
+
+
+
+
+  try {
+    const tagData = await Tag.findAll
+    ({include: [{ model: Product }]});
+
     res.status(200).json(tagData);
   } catch (err) {
-  
-    res.status(400).json(err)
+    res.status(400).json(err);
   }
-  // be sure to include its associated Product data
+
+
 });
 
 router.get('/:id', async (req, res) => {
