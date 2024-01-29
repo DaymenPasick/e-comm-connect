@@ -8,8 +8,9 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   // find all products
   try {
-    const productData = await Product.findAll({include: [{
-       model: Product,
+    const productData = await Product.findAll({include: 
+      [{
+       model: Category,
 
        //will hide tag id from req response
        attributes: {

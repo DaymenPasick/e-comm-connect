@@ -6,7 +6,8 @@ const { Tag, Product, ProductTag } = require('../../models');
 //Get all Tags w/ associated products included
 router.get('/', async (req, res) => {
   try {
-    const tagData = await Tag.findAll({include: [{
+    const tagData = await Tag.findAll({include:
+     [{
        model: Product,
 
        //will hide tag id from req response
@@ -34,7 +35,8 @@ router.get('/', async (req, res) => {
 //Get a single Tag by its ID. Includes associated products
 router.get('/:id', async (req, res) => {
   try {
-    const tagData = await Tag.findByPk(req.params.id, {include: [{
+    const tagData = await Tag.findByPk(req.params.id, {include:
+       [{
          model: Product,
 
          //will hide tag id from req response
