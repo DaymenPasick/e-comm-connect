@@ -1,21 +1,21 @@
+//Functionality for req endpoint /api/tags
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 
-// The `/api/tags` endpoint
 
+//Get all Tags w/ associated products included
 router.get('/', async (req, res) => {
-  //finds all tags
-
-
   try {
     const tagData = await Tag.findAll({include: [{
        model: Product,
+
+       //will hide tag id from req response
        attributes: {
         exclude: ['id']
        }
-    }],
+      }],
   
-  
+    //will hide tag id from req response  
     attributes: {
       exclude: ['id']
     },
@@ -26,24 +26,24 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-
 });
 
 
 
 
-
+//Get a single Tag by its ID. Includes associated products
 router.get('/:id', async (req, res) => {
-  // find a single tag by its `id`
   try {
     const tagData = await Tag.findByPk(req.params.id, {include: [{
          model: Product,
+
+         //will hide tag id from req response
          attributes: {
           exclude: ['id']
          }
-      
-      }],
+        }],
 
+      //will hide tag id from req response
       attributes: {
         exclude: ['id']
       },
@@ -58,13 +58,12 @@ router.get('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  // be sure to include its associated Product data
 });
 
-router.post('/', async (req, res) => {
-  // create new tag
-  try {
 
+//Create new Tag
+router.post('/', async (req, res) => {
+  try {
     const newTag = await Tag.create(req.body);
 
     res.status(200).json(newTag);
@@ -74,8 +73,11 @@ router.post('/', async (req, res) => {
   }
 });
 
+
+
+
+//Update a Tag by using the Tag's ID 
 router.put('/:id', async (req, res) => {
-  // update a tag's name by its `id` value
   try {
     const tagData = await Tag.update(req.body, {
       where: {
@@ -92,8 +94,11 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+
+
+
+//Delete a Tag by using the Tag's ID 
 router.delete('/:id', async (req, res) => {
-  // delete on tag by its `id` value
   try {
     const tagData = await Tag.destroy({
       where: {
