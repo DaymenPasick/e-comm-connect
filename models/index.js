@@ -20,4 +20,4 @@ module.exports = {
   ProductTag,
 };
 
-modole.exports = {Product, Category, Tag, ProductTag}
+module.exports = {Product, Category, Tag, ProductTag}
