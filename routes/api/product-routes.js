@@ -12,11 +12,20 @@ router.get('/', async (req, res) => {
       [{
        model: Category,
 
+       //will hide category id from req response
+       attributes: {
+        exclude: ['id']
+       }
+      },
+      {
+       model: Tag,
+
        //will hide tag id from req response
        attributes: {
         exclude: ['id']
        }
-      }],
+      },
+    ],
   
     //will hide tag id from req response  
     attributes: {
@@ -25,17 +34,40 @@ router.get('/', async (req, res) => {
   
   });
 
-    res.status(200).json(tagData);
+    res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
   }
-  // be sure to include its associated Category and Tag data
 });
 
 // get one product
 router.get('/:id', async (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  try {
+    const tagData = await Tag.findByPk(req.params.id, {include:
+       [{
+         model: Product,
+
+         //will hide tag id from req response
+         attributes: {
+          exclude: ['id']
+         }
+        }],
+
+      //will hide tag id from req response
+      attributes: {
+        exclude: ['id']
+      },
+    
+    });
+    if (!tagData) {
+      res.status(404).json({ message: 'No tag with this id!',
+     });
+      return;
+    }
+    res.status(200).json(tagData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // create new product
