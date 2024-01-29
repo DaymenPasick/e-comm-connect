@@ -1,10 +1,7 @@
+//File contains code to set up our server database conection with sequelize
 const express = require('express');
 const routes = require('./routes');
 const sequelize = require('./config/connection');
-
-
-//may use this later
-const models = require('./models');
 
 
 const app = express();
