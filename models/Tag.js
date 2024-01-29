@@ -1,3 +1,4 @@
+//Sets up the format for our Tag table
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
