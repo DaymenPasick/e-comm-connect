@@ -1,10 +1,28 @@
+//Functionality for req endpoint /api/categories
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 
 router.get('/', async (req, res) => {
-  // find all categories
+  try {
+    const categoryData = await Category.findAll({include:
+     [
+      {
+       model: Product,
+
+       //will hide tag id from req response
+       attributes: {
+        exclude: ['id']
+       }
+
+      }
+    ],
+  
+    //will hide tag id from req response  
+    attributes: {
+      exclude: ['id']
+    },
   // be sure to include its associated Products
 });
 
