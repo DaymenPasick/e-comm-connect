@@ -1,9 +1,9 @@
-# easy-svg
-A program that will allow you to quickly generate an SVG shape
+# e-comm-connect
+
 
 ## Description
 
-- This app allows the user to quickly and dynamically generate a logo
+- An app that creates a back-end setup for your e-commerce website. It utilizes the latest tech in the field to help you compete with the rest!
 
 
 ## Installation
@@ -12,8 +12,13 @@ A program that will allow you to quickly generate an SVG shape
 
 ## Usage
 
-- Click on the following link to watch a "How To" video guide!:
- (https://www.awesomescreenshot.com/video/23872707?key=421430003d13cb6f69ebef32ce188c34)
+- Click on the following link to watch the E-Comm Guide Part 1!:
+ (https://www.awesomescreenshot.com/video/24467320?key=81b34b1dbda117a3162915de6b751a12)
+
+
+
+- Click on the following link to watch the E-Comm Guide Part 2!:
+ (https://www.awesomescreenshot.com/video/24467958?key=f7f4bd435c849c33f94ba9a49a438867)
 
    
 - Terminal prompts to populate your newREADME
