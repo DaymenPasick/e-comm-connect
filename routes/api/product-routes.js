@@ -4,34 +4,14 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 
 
-// get all products
+//Get all Products
 router.get('/', async (req, res) => {
-  // find all products
   try {
     const productData = await Product.findAll({include: 
       [{
        model: Category,
-
-       //will hide category id from req response
-       attributes: {
-        exclude: ['id']
-       }
-      },
-      {
-       model: Tag,
-
-       //will hide tag id from req response
-       attributes: {
-        exclude: ['id']
-       }
       },
     ],
-  
-    //will hide tag id from req response  
-    attributes: {
-      exclude: ['id']
-    },
-  
   });
 
     res.status(200).json(productData);
@@ -40,39 +20,18 @@ router.get('/', async (req, res) => {
   }
 });
 
-// get one product
+//Get a Product by ID
 router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {include:
        [
         {
          model: Category,
-
-         //will hide tag id from req response
-         attributes: {
-          exclude: ['id']
-         }
-
-        },
-        {
-         model: Tag,
-
-         //will hide tag id from req response
-         attributes: {
-          exclude: ['id']
-         }
-
         }
       ],
-
-      //will hide tag id from req response
-      attributes: {
-        exclude: ['id']
-      },
-    
     });
     if (!productData) {
-      res.status(404).json({ message: 'No tag with this id!',
+      res.status(404).json({ message: 'No product with this id!',
      });
       return;
     }
@@ -82,18 +41,18 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-//Create new product
+//Create a new Product
 router.post('/', async (req, res) => {
-
   try {
     const product = await Product.create(req.body);
-    // if there's product tags, we need to create pairings by using the setTags method
+
+    // setTags() will create pairings if prior tags exist
     if (req.body.tagIds) {
       await product.setTags(req.body.tagIds);
       await product.save();
       return res.status(200).json(await product.getTags());
     }
-    // if no product tags, just respond
+    // if no product tags exists...
     return res.status(200).json(product);
   } catch (err) {
     console.log(err);
@@ -101,15 +60,19 @@ router.post('/', async (req, res) => {
   }
 });
 
+
+
 //Update Product by the Product's id
 router.put('/:id', async (req, res) => {
   try {
     const product = await Product.findByPk(req.params.id, { 
       include: [Tag],
     });
+
     // update product data
     product.update(req.body);
-    // if there's product tags, we need to create pairings by using the setTags method
+
+    //setTags() will create pairings if prior tags exist
     if (req.body.tagIds) {
       await product.setTags(req.body.tagIds);
     }
@@ -133,7 +96,7 @@ router.delete('/:id', async (req, res) => {
       },
     });
     if (!productData) {
-      res.status(404).json({ message: 'No user with this id!' });
+      res.status(404).json({ message: 'No product with this id!' });
       return;
     }
     res.status(200).json(productData);
